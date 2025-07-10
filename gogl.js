@@ -54,3 +54,32 @@ sendBtn.addEventListener('click', async () => {
 
 loadUsers()
 loadMessages()
+
+// --- Realtime pour nouveaux messages ---
+const channel = supabase
+  .channel('realtime-messages')
+  .on(
+    'postgres_changes',
+    {
+      event: 'INSERT',
+      schema: 'public',
+      table: 'messages',
+    },
+    (payload) => {
+      const msg = payload.new
+      // Affiche seulement si je suis concerné
+      if (
+        msg.expediteur === user.pseudo ||
+        msg.destinataire === user.pseudo
+      ) {
+        let exp = msg.expediteur === user.pseudo ? "Vous" : msg.expediteur
+        let dest = msg.destinataire === user.pseudo ? "Vous" : msg.destinataire
+        const div = document.createElement('div')
+        div.className = 'message'
+        div.textContent = `[${exp} → ${dest}] ${msg.message}`
+        messageList.appendChild(div)
+        messageList.scrollTop = messageList.scrollHeight
+      }
+    }
+  )
+  .subscribe()

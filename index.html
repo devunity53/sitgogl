@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accueil</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      height: 100vh;
+      margin: 0;
+      align-items: center;
+      justify-content: center;
+      background: #f9f9f9;
+    }
+    .home-container {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      align-items: center;
+      background: #fff;
+      padding: 3rem 2rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px #0002;
+    }
+    .home-container h1 {
+      margin: 0 0 1rem 0;
+    }
+    .home-container button {
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      background: #007bff;
+      color: #fff;
+      margin-bottom: 0.5rem;
+      transition: background 0.2s;
+    }
+    .home-container button:hover {
+      background: #0056b3;
+    }
+    @media (max-width: 600px) {
+      body {
+        padding: 0;
+      }
+      form,
+      .home-container,
+      #messages,
+      #composer {
+        min-width: unset;
+        width: 98vw !important;
+        max-width: 98vw !important;
+        padding: 1rem !important;
+        border-radius: 0.5rem !important;
+        box-shadow: none !important;
+      }
+      #messages, #composer {
+        margin-bottom: 1rem !important;
+      }
+      #logout-btn {
+        margin: 1rem 0 0.5rem 0 !important;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="home-container">
+    <h1>Bienvenue sur Gogl Chat</h1>
+    <button onclick="window.location='login.html'">Se connecter</button>
+    <button onclick="window.location='signup.html'">Créer un compte</button>
+  </div>
+</body>
+</html>
